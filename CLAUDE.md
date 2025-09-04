@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 技術スタック
 - **Next.js 15.5.2** - App Router使用
 - **TypeScript** - 型安全な開発
-- **Tailwind CSS 3.x** - スタイリング
+- **Tailwind CSS 4.x** - 最新版のCSSフレームワーク
 - **Vercel** - ホスティングとデプロイ
 
 ## 開発コマンド
@@ -28,7 +28,7 @@ npm run lint       # ESLintでコード品質チェック
 ### 完了済み
 - ✅ Next.js初期セットアップ
 - ✅ TypeScript設定
-- ✅ Tailwind CSS設定（v3を使用、v4はVercelでビルドエラーのため避ける）
+- ✅ Tailwind CSS v4設定（@tailwindcss/postcssを使用）
 - ✅ GitHubリポジトリ作成・連携
 - ✅ Vercelデプロイ設定
 - ✅ 基本的なトップページ作成
@@ -82,13 +82,12 @@ src/app/
 
 ## 注意事項
 
-### Tailwind CSS
-- **必ずv3を使用すること**（v4はVercelでビルドエラーが発生）
-- postcss.config.mjsの設定は以下を維持：
+### Tailwind CSS v4
+- **Tailwind CSS v4を使用**（@tailwindcss/postcssパッケージが必要）
+- postcss.config.mjsの設定：
   ```javascript
   plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+    '@tailwindcss/postcss': {},
   }
   ```
 
