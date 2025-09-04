@@ -1,15 +1,85 @@
-# CLAUDE.md
+# CLAUDE.md - Portfolio Site
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with the portfolio site codebase.
 
 ## プロジェクト概要
-ポートフォリオサイトを作成中。実績やプロジェクトを紹介し、GitHubと連携して開発スキルをアピールすることが目的。
+プロフェッショナルなポートフォリオサイト。フリーランスエンジニアとしての実績と技術スタックを効果的に提示。
+
+## 現在のデザインコンセプト
+**「Professional Minimalist」** - 信頼性とプロフェッショナリズムを重視したクリーンなデザイン
+
+### カラーパレット
+```css
+Primary: #0A0E27 (深い紺)
+Accent: #3B82F6 (信頼のブルー)  
+Background: #FFFFFF / #F8FAFC
+Text: #1F2937
+Border: #E5E7EB
+```
+
+### デザイン原則
+- ✅ 白背景ベースのクリーンデザイン
+- ✅ 最小限のアニメーション（パフォーマンス重視）
+- ✅ 明確な情報階層
+- ✅ アクセシビリティ優先
+- ✅ モバイルファースト
 
 ## 技術スタック
-- **Next.js 15.5.2** - App Router使用
-- **TypeScript** - 型安全な開発
-- **Tailwind CSS 4.x** - 最新版のCSSフレームワーク
-- **Vercel** - ホスティングとデプロイ
+- **Framework**: Next.js 15.5.2 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4.x
+- **Deployment**: Vercel
+- **Version Control**: Git/GitHub
+
+## ファイル構造
+```
+src/app/
+├── layout.tsx       # メインレイアウト（メタデータ、SEO設定）
+├── page.tsx         # ホームページ（全セクション統合）
+├── globals.css      # グローバルスタイル
+├── components/      # 再利用可能コンポーネント（今後追加予定）
+│   ├── Navigation.tsx
+│   ├── ProjectCard.tsx
+│   └── SkillBar.tsx
+└── lib/            # ユーティリティ関数（今後追加予定）
+    └── utils.ts
+```
+
+## セクション構成
+
+### 1. Navigation (固定ヘッダー)
+- スクロール位置検知でアクティブセクションハイライト
+- スムーススクロール実装
+- レスポンシブ対応（モバイルメニュー今後実装）
+
+### 2. Hero Section
+- 簡潔な自己紹介
+- CTAボタン（Projects / CV）
+- プロフェッショナルな第一印象
+
+### 3. Projects Section
+- 実プロジェクト優先表示
+- ステータス表示（完成/開発中/計画中）
+- GitHub/Live Demoリンク
+- 使用技術タグ
+
+### 4. Skills Section
+- カテゴリ別スキル表示
+  - Languages（C#, C++, TypeScript, Python, SQL）
+  - Frontend（React, Next.js, HTML/CSS, Tailwind）
+  - Backend（.NET Core, Node.js, Express）
+  - Tools & Others（Git, Docker, PostgreSQL, MongoDB）
+- 経験年数/学習状況表示
+- プログレスバー可視化
+
+### 5. Experience Section
+- 実務経験
+- 学習履歴
+- 使用技術タグ
+
+### 6. Contact Section
+- Email/GitHubリンク
+- シンプルで直接的なコンタクト方法
 
 ## 開発コマンド
 ```bash
@@ -20,123 +90,71 @@ npm run lint       # ESLintでコード品質チェック
 ```
 
 ## デプロイ情報
-- GitHub: https://github.com/haikeeen/portfolio-site
-- Vercel: 自動デプロイ設定済み（mainブランチにプッシュすると自動的にデプロイ）
+- **GitHub**: https://github.com/haikeeen/portfolio-site
+- **Production**: https://portfolio-site-haikeeen.vercel.app
+- **自動デプロイ**: mainブランチへのプッシュで自動デプロイ
 
-## 現在の実装状況
+## パフォーマンス最適化
+- ✅ 画像最適化（Next.js Image使用）
+- ✅ フォント最適化（Next.js Font使用）
+- ✅ 静的サイト生成（SSG）
+- ✅ コード分割
+- ✅ 最小限のJavaScript
 
-### 完了済み 🎉
-- ✅ Next.js初期セットアップ
-- ✅ TypeScript設定
-- ✅ Tailwind CSS v4設定（@tailwindcss/postcssを使用）
-- ✅ GitHubリポジトリ作成・連携
-- ✅ Vercelデプロイ設定
-- ✅ **革命的「Creative Energy Hub」デザイン実装**
-  - 鮮やかなマルチカラーグラデーション背景（4セクション別）
-  - マウス追従エフェクト + 最適化されたパーティクルシステム
-  - 3D浮遊プロフィールカード（ホログラム風回転ボーダー）
-  - ネオンタイポグラフィ（グラデーション文字 + アニメーション）
-  - インタラクティブプロジェクトカード（3D変形 + 回転効果）
-  - 発光スキルバー（グラデーション + アニメーション）
-- ✅ **フローティングナビゲーション**
-  - アクティブセクション自動検知
-  - スムーススクロール実装
-  - レスポンシブ対応
-- ✅ **パフォーマンス最適化**
-  - GPU最適化（will-change、transform-gpu）
-  - デバイス別パーティクル数調整
-  - アクセシビリティ対応（prefers-reduced-motion）
+## SEO対策
+- ✅ 適切なメタタグ設定
+- ✅ Open Graph対応
+- ✅ 構造化データ（今後追加）
+- ✅ サイトマップ（今後追加）
 
-### 現在のファイル構造
-```
-src/app/
-├── layout.tsx      # 共通レイアウト（SEO最適化済み）
-├── page.tsx        # メインページ（Creative Energy Hub）
-└── globals.css     # グローバルスタイル（Tailwind）
-```
-
-### デザインコンセプト
-**「Creative Energy Hub」** - エネルギッシュで記憶に残るポートフォリオ
-- Hero: Orange→Pink→Purple（夕焼けグラデーション）
-- Projects: Cyan→Teal→Blue（海グラデーション）
-- Skills: Green→Purple→Blue（オーロラグラデーション）
-- Contact: Red→Orange→Yellow（炎グラデーション）
+## アクセシビリティ
+- ✅ セマンティックHTML
+- ✅ 適切なARIA属性
+- ✅ キーボードナビゲーション対応
+- ✅ 十分なカラーコントラスト
 
 ## 今後の実装予定
 
-### 優先度：高
-1. **プロジェクトモーダルシステム** 🚧
-   - クリックで詳細表示
-   - 技術スタック詳細
-   - スクリーンショット・デモ
-   - GitHub統計連携
+### 高優先度
+1. **モバイルメニュー実装**
+2. **プロジェクト詳細モーダル**
+3. **GitHub API連携**（実際のリポジトリデータ取得）
+4. **ダークモード対応**
 
-2. **GitHub API連携** 
-   - リアルタイム統計表示
-   - コントリビューショングラフ
-   - 実際のリポジトリデータ
+### 中優先度
+5. **多言語対応**（日本語/英語）
+6. **ブログセクション追加**
+7. **アニメーション強化**（Framer Motion）
+8. **お問い合わせフォーム**
 
-3. **お問い合わせフォーム機能**
-   - メール送信機能
-   - フォームバリデーション
-   - スパム対策
+### 低優先度
+9. **CMSx連携**
+10. **アナリティクス導入**
 
-### 優先度：中
-4. **追加ページ作成**
-   - About詳細ページ
-   - ブログセクション（技術記事）
-   - 経歴・実績詳細
-
-5. **アニメーション強化**
-   - スクロール連動アニメーション
-   - パララックス効果
-   - マイクロインタラクション
-
-6. **SEO・アクセシビリティ向上**
-   - 構造化データ追加
-   - 画像最適化
-   - パフォーマンス改善
-
-### 優先度：低  
-7. **多言語対応**
-   - 英語版ページ
-   - 自動言語検知
-
-8. **CMS連携**
-   - ブログ投稿管理
-   - プロジェクト管理
-
-## 注意事項
-
-### Tailwind CSS v4
-- **Tailwind CSS v4を使用**（@tailwindcss/postcssパッケージが必要）
-- postcss.config.mjsの設定：
-  ```javascript
-  plugins: {
-    '@tailwindcss/postcss': {},
-  }
-  ```
-
-### コミットメッセージ
-日本語でわかりやすく記載する。例：
-- `feat: プロジェクト一覧ページを追加`
-- `fix: ナビゲーションのレスポンシブ対応を修正`
-- `style: ダークモードのスタイルを調整`
-
-### Git設定
+## Git設定
 - ユーザー名: keisuke sekiguchi
 - メール: keisuke.sekiguchi2@gmail.com
 
-## 開発方針
-1. **ビジュアルインパクト重視** - 記憶に残る印象的なデザイン
-2. **パフォーマンス最適化** - 美しさと実用性の両立
-3. **レスポンシブデザイン** - 全デバイスで最適な体験
-4. **アクセシビリティ配慮** - 誰もが使いやすいUI/UX
-5. **継続的改善** - データ分析に基づく機能改善
+## コミットメッセージ規則
+```
+feat: 新機能追加
+fix: バグ修正
+docs: ドキュメント更新
+style: コードスタイル修正
+refactor: リファクタリング
+perf: パフォーマンス改善
+test: テスト追加/修正
+chore: ビルド関連・その他
+```
 
-## 技術的特徴
-- **GPU最適化アニメーション** - スムーズな60FPS描画
-- **Intersection Observer** - 効率的なスクロール検知
-- **CSS-in-JS** - 動的スタイリング
-- **TypeScript** - 型安全な開発
-- **Next.js 15** - 最新のReact機能活用
+## 開発方針
+1. **実績重視** - 実際のプロジェクトを優先的に表示
+2. **クリーンコード** - 可読性と保守性を重視
+3. **パフォーマンス** - Core Web Vitals最適化
+4. **プロフェッショナル** - 採用担当者/クライアント向けデザイン
+5. **継続的改善** - 定期的なコンテンツ更新
+
+## 備考
+- Claude Codeを活用した効率的な開発
+- ベストプラクティスの遵守
+- 最新技術の積極的採用

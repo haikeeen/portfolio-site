@@ -1,42 +1,16 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     setMounted(true)
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    
-    // Smooth scroll to section
-    const smoothScrollTo = (elementId: string) => {
-      const element = document.getElementById(elementId)
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        })
-      }
-    }
 
-    // Add smooth scroll to existing anchor links
-    const handleAnchorClick = (e: Event) => {
-      const target = e.target as HTMLAnchorElement
-      if (target.hash) {
-        e.preventDefault()
-        const sectionId = target.hash.substring(1)
-        smoothScrollTo(sectionId)
-      }
-    }
-
-    // Intersection Observer for active section detection
     const observerOptions = {
       root: null,
       rootMargin: '-50% 0px -50% 0px',
@@ -51,373 +25,260 @@ export default function Home() {
       })
     }, observerOptions)
 
-    // Observe sections when component mounts
     setTimeout(() => {
-      const sections = ['home', 'projects', 'skills', 'contact']
+      const sections = ['home', 'projects', 'skills', 'experience', 'contact']
       sections.forEach(id => {
         const element = document.getElementById(id)
         if (element) observer.observe(element)
       })
     }, 100)
-    
-    window.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('click', handleAnchorClick)
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('click', handleAnchorClick)
-      observer.disconnect()
-    }
+
+    return () => observer.disconnect()
   }, [])
 
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "革新的なショッピング体験を提供するフルスタックECサイト。リアルタイム在庫管理と高度な検索機能を実装。",
-      image: "/api/placeholder/400/300",
-      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe"],
-      github: "https://github.com/haikeeen/ecommerce-platform",
-      demo: "https://ecommerce-demo.vercel.app",
-      status: "completed",
-      gradient: "from-pink-400 via-purple-500 to-blue-500",
-      icon: "🛒"
+      title: "Portfolio Website",
+      description: "モダンなポートフォリオサイト。Next.js 15とTypeScriptを使用した高速なSSG実装。",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+      liveUrl: "https://portfolio-site-haikeeen.vercel.app",
+      githubUrl: "https://github.com/haikeeen/portfolio-site",
+      image: "/portfolio.png",
+      featured: true
     },
     {
       id: 2,
-      title: "AI Task Manager",
-      description: "AI搭載のインテリジェントなタスク管理ツール。自動カテゴライズと優先度判定機能付き。",
-      image: "/api/placeholder/400/300",
-      techStack: ["React", "Node.js", "OpenAI API", "MongoDB", "Socket.io"],
-      github: "https://github.com/haikeeen/ai-task-manager",
-      demo: "https://ai-task-manager-demo.vercel.app",
-      status: "completed",
-      gradient: "from-cyan-400 via-teal-500 to-blue-600",
-      icon: "🤖"
+      title: "Task Management API",
+      description: "RESTful API設計のタスク管理システム。JWT認証とPostgreSQLを使用。",
+      tags: ["Node.js", "Express", "PostgreSQL", "JWT"],
+      githubUrl: "https://github.com/haikeeen/task-api",
+      status: "development"
     },
     {
       id: 3,
       title: "Real-time Chat App",
-      description: "暗号化されたリアルタイム通信アプリ。ビデオ通話とファイル共有機能を搭載。",
-      image: "/api/placeholder/400/300",
-      techStack: ["Next.js", "WebRTC", "Socket.io", "Redis", "FFmpeg"],
-      github: "https://github.com/haikeeen/realtime-chat",
-      demo: "https://realtime-chat-demo.vercel.app",
-      status: "in-progress",
-      gradient: "from-green-400 via-emerald-500 to-cyan-500",
-      icon: "💬"
-    },
-    {
-      id: 4,
-      title: "3D Portfolio Showcase",
-      description: "Three.jsを使用したインタラクティブな3Dポートフォリオ。没入型のユーザー体験を実現。",
-      image: "/api/placeholder/400/300",
-      techStack: ["Three.js", "React", "WebGL", "GSAP", "Blender"],
-      github: "https://github.com/haikeeen/3d-portfolio",
-      demo: "https://3d-portfolio-demo.vercel.app",
-      status: "in-progress",
-      gradient: "from-orange-400 via-red-500 to-pink-600",
-      icon: "🎮"
-    },
-    {
-      id: 5,
-      title: "Crypto Analytics Dashboard",
-      description: "リアルタイム暗号通貨分析ダッシュボード。高度なチャートと予測機能を提供。",
-      image: "/api/placeholder/400/300",
-      techStack: ["React", "D3.js", "WebSocket", "Python", "TensorFlow"],
-      github: "https://github.com/haikeeen/crypto-analytics",
-      demo: "https://crypto-analytics-demo.vercel.app",
-      status: "completed",
-      gradient: "from-yellow-400 via-orange-500 to-red-500",
-      icon: "📊"
-    },
-    {
-      id: 6,
-      title: "IoT Smart Home Hub",
-      description: "IoTデバイス統合管理システム。音声制御とAI学習機能付きホームオートメーション。",
-      image: "/api/placeholder/400/300",
-      techStack: ["Node.js", "IoT Core", "Machine Learning", "React Native", "AWS"],
-      github: "https://github.com/haikeeen/smart-home-hub",
-      demo: "https://smart-home-demo.vercel.app",
-      status: "completed",
-      gradient: "from-purple-400 via-indigo-500 to-blue-600",
-      icon: "🏠"
+      description: "WebSocketを使用したリアルタイムチャットアプリケーション。",
+      tags: ["React", "Socket.io", "Redis", "Docker"],
+      githubUrl: "https://github.com/haikeeen/chat-app",
+      status: "planned"
     }
   ]
 
-  const skills = [
-    { name: "React/Next.js", level: 95, category: "Frontend", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-    { name: "TypeScript", level: 90, category: "Language", icon: "🔷", color: "from-blue-400 to-indigo-500" },
-    { name: "Node.js", level: 88, category: "Backend", icon: "🟢", color: "from-green-400 to-emerald-500" },
-    { name: "Python", level: 85, category: "Language", icon: "🐍", color: "from-yellow-400 to-green-500" },
-    { name: "Three.js/WebGL", level: 80, category: "3D Graphics", icon: "🎯", color: "from-purple-400 to-pink-500" },
-    { name: "AI/ML", level: 75, category: "Intelligence", icon: "🧠", color: "from-orange-400 to-red-500" },
-    { name: "PostgreSQL", level: 82, category: "Database", icon: "🐘", color: "from-indigo-400 to-purple-500" },
-    { name: "AWS/Cloud", level: 78, category: "DevOps", icon: "☁️", color: "from-teal-400 to-cyan-500" }
-  ]
-
-  // Optimize particle count based on device capabilities
-  const getParticleCount = () => {
-    if (typeof window === 'undefined') return 30
-    const isMobile = window.innerWidth < 768
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    
-    if (isReducedMotion) return 10
-    if (isMobile) return 20
-    return 40 // Reduced from 50 for better performance
+  const skills = {
+    "Languages": [
+      { name: "C#", level: 85, experience: "3年" },
+      { name: "C++", level: 80, experience: "2年" },
+      { name: "TypeScript", level: 70, experience: "学習中" },
+      { name: "Python", level: 60, experience: "学習中" },
+      { name: "SQL", level: 75, experience: "2年" }
+    ],
+    "Frontend": [
+      { name: "React", level: 65, experience: "学習中" },
+      { name: "Next.js", level: 60, experience: "学習中" },
+      { name: "HTML/CSS", level: 80, experience: "3年" },
+      { name: "Tailwind CSS", level: 70, experience: "学習中" }
+    ],
+    "Backend": [
+      { name: ".NET Core", level: 80, experience: "2年" },
+      { name: "Node.js", level: 60, experience: "学習中" },
+      { name: "Express", level: 55, experience: "学習中" }
+    ],
+    "Tools & Others": [
+      { name: "Git/GitHub", level: 75, experience: "2年" },
+      { name: "Docker", level: 60, experience: "学習中" },
+      { name: "PostgreSQL", level: 70, experience: "1年" },
+      { name: "MongoDB", level: 50, experience: "学習予定" }
+    ]
   }
-  
-  const particleCount = mounted ? getParticleCount() : 30
 
-  const navigationItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'projects', label: 'Projects', icon: '🎨' },
-    { id: 'skills', label: 'Skills', icon: '⚡' },
-    { id: 'contact', label: 'Contact', icon: '💫' }
+  const experience = [
+    {
+      period: "2021 - 現在",
+      title: "ソフトウェアエンジニア",
+      company: "現職",
+      description: "C#とC++を使用した業務システム開発。VBでのレガシーシステム保守。",
+      technologies: ["C#", ".NET", "C++", "SQL Server", "VB.NET"]
+    },
+    {
+      period: "2024",
+      title: "フルスタック開発学習",
+      company: "自主学習",
+      description: "モダンなWeb技術スタックの習得。React、Next.js、Node.jsを中心に学習。",
+      technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"]
+    }
   ]
 
-  const handleNavClick = (sectionId: string) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const offset = 80
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = element.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       })
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 overflow-hidden">
-      {/* Floating Navigation */}
-      <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-40 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-4 shadow-2xl">
-        <div className="flex items-center gap-8">
-          {navigationItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`group flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 ${
-                activeSection === item.id
-                  ? 'bg-white/30 text-white scale-110'
-                  : 'text-white/80 hover:text-white hover:bg-white/20 hover:scale-105'
-              }`}
-            >
-              <span className="text-lg group-hover:animate-bounce">
-                {item.icon}
-              </span>
-              <span className="font-medium text-sm hidden md:block">
-                {item.label}
-              </span>
-            </button>
-          ))}
-        </div>
-      </nav>
-      {/* Mouse Follower Effect */}
-      <div 
-        className="fixed pointer-events-none z-50 w-6 h-6 rounded-full bg-white mix-blend-difference"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          transition: 'all 0.1s ease-out'
-        }}
-      />
-
-      {/* Floating Particles */}
-      {mounted && (
-        <div className="fixed inset-0 pointer-events-none z-10">
-          {[...Array(particleCount)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                backgroundColor: ['#00D4FF', '#39FF14', '#FF1B8D', '#FFD700', '#FF4500'][Math.floor(Math.random() * 5)],
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${2 + Math.random() * 3}s`,
-                opacity: 0.7,
-                filter: 'blur(0.5px)',
-                willChange: 'opacity, transform'
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Hero Section - Energy Burst */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
-        {/* Animated Background Orbs */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-green-400/30 to-emerald-500/30 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-
-        <div className="relative z-20 text-center max-w-6xl mx-auto">
-          {/* Floating Profile Card */}
-          <div className="mb-12 perspective-1000">
-            <div className="relative inline-block transform-gpu hover:scale-105 transition-all duration-500 animate-float">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow"></div>
-              <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-full flex items-center justify-center shadow-2xl">
-                <div className="text-6xl md:text-7xl lg:text-8xl">👨‍💻</div>
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce">
-                ✨ Available
-              </div>
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-xl font-bold text-gray-900">
+              KS<span className="text-blue-600">.</span>
+            </div>
+            <div className="hidden md:flex items-center gap-8">
+              {['home', 'projects', 'skills', 'experience', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize text-sm font-medium transition-colors ${
+                    activeSection === item
+                      ? 'text-blue-600'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+              <a
+                href="https://github.com/haikeeen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+              </a>
             </div>
           </div>
+        </div>
+      </nav>
 
-          {/* Neon Typography */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 drop-shadow-2xl animate-pulse">
-            関口 圭祐
-          </h1>
-          
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-white drop-shadow-lg">
-            <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">Creative</span>{' '}
-            <span className="bg-gradient-to-r from-green-300 to-emerald-400 bg-clip-text text-transparent">Fullstack</span>{' '}
-            <span className="bg-gradient-to-r from-purple-300 to-pink-400 bg-clip-text text-transparent">Developer</span>
-          </h2>
-
-          {/* Floating Skill Tags */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {['React', 'Next.js', 'TypeScript', 'Three.js', 'AI/ML'].map((skill, index) => (
-              <div
-                key={skill}
-                className="px-6 py-3 bg-white/20 backdrop-blur-md rounded-full text-white font-semibold border border-white/30 hover:bg-white/30 transition-all duration-300 transform hover:scale-110 animate-bounce"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                {skill}
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <div className="inline-block p-4 bg-gray-50 rounded-full mb-6">
+              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-4xl font-bold">
+                KS
               </div>
-            ))}
-          </div>
-
-          {/* Catchphrase */}
-          <p className="text-xl md:text-2xl lg:text-3xl text-white/90 mb-16 max-w-4xl mx-auto leading-relaxed font-light">
-            🚀 革新的なウェブ体験を創造し、<br />
-            <span className="text-yellow-300 font-bold animate-pulse">コードで未来を描く</span> デジタルアーティスト
-          </p>
-
-          {/* CTA Buttons with Neon Effects */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button
-              onClick={() => handleNavClick('projects')}
-              className="group relative px-10 py-5 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xl font-bold rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
-            >
-              <span className="relative z-10">🎨 プロジェクトを見る</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-            </button>
-            <button
-              onClick={() => handleNavClick('contact')}
-              className="group px-10 py-5 border-4 border-white text-white text-xl font-bold rounded-full backdrop-blur-md hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
-            >
-              💫 お問い合わせ
-            </button>
-          </div>
-
-          {/* Animated Stats */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-            {[
-              { number: '100+', label: 'Projects', icon: '🚀', color: 'from-cyan-400 to-blue-500' },
-              { number: '5+', label: 'Years', icon: '⭐', color: 'from-green-400 to-emerald-500' },
-              { number: '500+', label: 'Commits', icon: '💻', color: 'from-purple-400 to-pink-500' },
-              { number: '24/7', label: 'Available', icon: '⚡', color: 'from-orange-400 to-red-500' }
-            ].map((stat, index) => (
-              <div
-                key={stat.label}
-                className="text-center transform hover:scale-110 transition-all duration-300 animate-bounce"
-                style={{ animationDelay: `${index * 0.3}s` }}
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+              関口 圭祐
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-gray-600 mb-6">
+              Full-Stack Developer
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              C#/.NET開発経験を基盤に、モダンなWeb技術スタックを習得中。
+              高品質なソフトウェアソリューションの提供を目指しています。
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                  {stat.icon} {stat.number}
-                </div>
-                <div className="text-white/80 font-medium">{stat.label}</div>
-              </div>
-            ))}
+                View Projects
+              </button>
+              <a
+                href="/resume.pdf"
+                className="px-8 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Download CV
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section - Interactive Gallery */}
-      <section id="projects" className="py-24 bg-gradient-to-br from-cyan-400 via-teal-500 to-blue-600 relative">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: '50px 50px'
-          }}></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-300 drop-shadow-2xl">
-              🎨 Featured Projects
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Projects
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-light">
-              創造力と技術力が融合した、革新的なデジタルソリューション
+            <p className="text-lg text-gray-600">
+              実際に開発したプロジェクトと現在進行中の開発
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
               <div
                 key={project.id}
-                className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:-translate-y-4 hover:rotate-1"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
               >
-                {/* Project Image/Icon */}
-                <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center group-hover:animate-pulse`}>
-                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {project.icon}
+                {project.featured && (
+                  <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
+                    <div className="text-6xl opacity-20">💻</div>
                   </div>
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
-                    project.status === 'completed' 
-                      ? 'bg-green-400 text-green-900'
-                      : 'bg-yellow-400 text-yellow-900'
-                  }`}>
-                    {project.status === 'completed' ? '✅ 完成' : '🚧 開発中'}
-                  </div>
-                </div>
-                
+                )}
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/80 mb-4 line-clamp-3 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-white/20 text-white text-xs rounded-full border border-white/30"
-                      >
-                        {tech}
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-bold text-gray-900">
+                      {project.title}
+                    </h3>
+                    {project.status === 'development' && (
+                      <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">
+                        開発中
                       </span>
-                    ))}
-                    {project.techStack.length > 3 && (
-                      <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full font-bold">
-                        +{project.techStack.length - 3}
+                    )}
+                    {project.status === 'planned' && (
+                      <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full">
+                        計画中
                       </span>
                     )}
                   </div>
-
+                  <p className="text-gray-600 mb-4 text-sm">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-xs bg-blue-50 text-blue-700 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                   <div className="flex gap-3">
-                    <a
-                      href={project.github}
-                      className="flex-1 text-center px-4 py-3 border border-white/30 text-white rounded-xl hover:bg-white/20 transition-all duration-300 font-semibold hover:scale-105"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      📂 GitHub
-                    </a>
-                    <a
-                      href={project.demo}
-                      className="flex-1 text-center px-4 py-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-xl hover:shadow-lg transition-all duration-300 font-semibold hover:scale-105"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      🚀 Demo
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-gray-600 hover:text-gray-900 flex items-center gap-1"
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                        </svg>
+                        GitHub
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -426,57 +287,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section - Neon Dashboard */}
-      <section id="skills" className="py-24 bg-gradient-to-br from-green-400 via-purple-500 to-blue-600 relative">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-purple-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 drop-shadow-2xl">
-              ⚡ Technical Skills
+      {/* Skills Section */}
+      <section id="skills" className="py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Technical Skills
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-light">
-              最新技術をマスターし続ける、デジタルクラフトマンのスキルセット
+            <p className="text-lg text-gray-600">
+              実務経験と現在学習中の技術スタック
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {skills.map((skill, index) => (
-              <div
-                key={skill.name}
-                className="group bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-500 transform hover:scale-105"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex justify-between items-center mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                      {skill.icon}
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="bg-white p-6 rounded-xl border border-gray-100">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">{category}</h3>
+                <div className="space-y-3">
+                  {items.map((skill) => (
+                    <div key={skill.name}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-sm font-medium text-gray-700">{skill.name}</span>
+                        <span className="text-xs text-gray-500">{skill.experience}</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
+                          style={{ width: mounted ? `${skill.level}%` : '0%' }}
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 transition-colors">
-                        {skill.name}
-                      </h3>
-                      <span className="text-sm text-white/70 font-medium">
-                        {skill.category}
-                      </span>
-                    </div>
-                  </div>
-                  <div className={`text-2xl font-black bg-gradient-to-r ${skill.color} bg-clip-text text-transparent`}>
-                    {skill.level}%
-                  </div>
-                </div>
-                
-                <div className="w-full bg-white/20 rounded-full h-4 overflow-hidden">
-                  <div
-                    className={`h-4 bg-gradient-to-r ${skill.color} rounded-full transition-all duration-2000 ease-out shadow-lg`}
-                    style={{
-                      width: mounted ? `${skill.level}%` : '0%',
-                      filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'
-                    }}
-                  ></div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -484,77 +325,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section - Fire Gradient */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-red-400 via-orange-500 to-yellow-400 relative">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-white/10 to-yellow-300/20 rounded-full filter blur-3xl animate-pulse"></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-300 drop-shadow-2xl">
-            💫 Let&apos;s Connect
-          </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto font-light">
-            素晴らしいプロジェクトを一緒に創造しましょう！<br />
-            新しいアイデアをお聞かせください 🚀
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16">
-            <a
-              href="mailto:keisuke.sekiguchi2@gmail.com"
-              className="group px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xl font-bold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
-            >
-              <span className="group-hover:animate-bounce inline-block">📧</span> メールを送る
-            </a>
-            <a
-              href="https://github.com/haikeeen"
-              className="group px-12 py-6 border-4 border-white text-white text-xl font-bold rounded-full backdrop-blur-md hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="group-hover:animate-spin inline-block">⭐</span> GitHub
-            </a>
+      {/* Experience Section */}
+      <section id="experience" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Experience
+            </h2>
+            <p className="text-lg text-gray-600">
+              実務経験と学習履歴
+            </p>
           </div>
 
-          <div className="text-center text-white/80 space-y-2">
-            <p className="text-lg">📍 Tokyo, Japan</p>
-            <p className="text-lg">💼 Available for exciting projects</p>
-            <p className="text-lg">🌟 Response within 24 hours</p>
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl border border-gray-100">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{exp.title}</h3>
+                    <p className="text-gray-600">{exp.company}</p>
+                  </div>
+                  <span className="text-sm text-gray-500 mt-2 md:mt-0">{exp.period}</span>
+                </div>
+                <p className="text-gray-600 mb-4">{exp.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(2deg); }
-        }
-        
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+      {/* Contact Section */}
+      <section id="contact" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Get In Touch
+          </h2>
+          <p className="text-lg text-gray-600 mb-8">
+            新しいプロジェクトや機会についてお話ししましょう
+          </p>
+          <div className="flex gap-4 justify-center">
+            <a
+              href="mailto:keisuke.sekiguchi2@gmail.com"
+              className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Send Email
+            </a>
+            <a
+              href="https://github.com/haikeeen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <p className="text-gray-600 text-sm">
+            © 2024 Keisuke Sekiguchi. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
