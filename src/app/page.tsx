@@ -74,8 +74,8 @@ export default function Home() {
             <div className="group relative p-8 lg:p-10 xl:p-12 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-500 hover:-translate-y-2">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-20 transition duration-500 blur"></div>
               <div className="relative">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 mx-auto mb-6 lg:mb-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
-                  <svg className="w-8 h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 max-w-20 max-h-20 mx-auto mb-6 lg:mb-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 max-w-10 max-h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </div>
@@ -89,36 +89,36 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative p-8 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-500 hover:-translate-y-2">
+            <div className="group relative p-8 lg:p-10 xl:p-12 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-500 hover:-translate-y-2">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition duration-500 blur"></div>
               <div className="relative">
-                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 max-w-20 max-h-20 mx-auto mb-6 lg:mb-8 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 max-w-10 max-h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 dark:text-white mb-4 lg:mb-6 text-center">
                   レスポンシブ対応
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed lg:text-lg xl:text-xl">
                   スマートフォンからデスクトップまで、<br />
                   あらゆるデバイスで完璧な体験を実現
                 </p>
               </div>
             </div>
 
-            <div className="group relative p-8 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-500 hover:-translate-y-2">
+            <div className="group relative p-8 lg:p-10 xl:p-12 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-500 hover:-translate-y-2">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 transition duration-500 blur"></div>
               <div className="relative">
-                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 max-w-20 max-h-20 mx-auto mb-6 lg:mb-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                  <svg className="w-8 h-8 lg:w-10 lg:h-10 max-w-10 max-h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 dark:text-white mb-4 lg:mb-6 text-center">
                   高速パフォーマンス
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed lg:text-lg xl:text-xl">
                   最適化されたコードとベストプラクティスで、<br />
                   ライトニング級の読み込み速度を実現
                 </p>
@@ -145,10 +145,10 @@ export default function Home() {
             <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 lg:p-8 xl:p-10 border border-gray-700 hover:border-purple-500 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-purple-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
-                <div className="h-48 lg:h-56 xl:h-64 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl mb-4 lg:mb-6 flex items-center justify-center">
+                <div className="h-48 lg:h-52 max-h-52 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl mb-4 lg:mb-6 flex items-center justify-center">
                   <div className="text-white text-center">
-                    <div className="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-12 h-12 lg:w-14 lg:h-14 max-w-14 max-h-14 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
+                      <svg className="w-6 h-6 lg:w-7 lg:h-7 max-w-7 max-h-7" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                       </svg>
                     </div>
@@ -164,13 +164,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-pink-500/20">
+            <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 lg:p-8 xl:p-10 border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-pink-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
-                <div className="h-48 bg-gradient-to-br from-pink-600 to-purple-600 rounded-xl mb-4 flex items-center justify-center">
+                <div className="h-48 lg:h-52 max-h-52 bg-gradient-to-br from-pink-600 to-purple-600 rounded-xl mb-4 lg:mb-6 flex items-center justify-center">
                   <div className="text-white text-center">
-                    <div className="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
-                      <span className="text-lg font-bold">🚀</span>
+                    <div className="w-12 h-12 lg:w-14 lg:h-14 max-w-14 max-h-14 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
+                      <span className="text-lg lg:text-xl max-text-xl font-bold">🚀</span>
                     </div>
                     <span className="text-sm">Coming Soon</span>
                   </div>
@@ -184,13 +184,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700 hover:border-cyan-500 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-cyan-500/20">
+            <div className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 lg:p-8 xl:p-10 border border-gray-700 hover:border-cyan-500 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-cyan-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
-                <div className="h-48 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl mb-4 flex items-center justify-center">
+                <div className="h-48 lg:h-52 max-h-52 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-xl mb-4 lg:mb-6 flex items-center justify-center">
                   <div className="text-white text-center">
-                    <div className="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
-                      <span className="text-lg font-bold">⚡</span>
+                    <div className="w-12 h-12 lg:w-14 lg:h-14 max-w-14 max-h-14 mx-auto mb-2 bg-white/20 rounded-lg flex items-center justify-center">
+                      <span className="text-lg lg:text-xl max-text-xl font-bold">⚡</span>
                     </div>
                     <span className="text-sm">In Development</span>
                   </div>

@@ -57,3 +57,44 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Maximum Size Constraints for Large Displays */
+.max-w-20 {
+  max-width: 5rem;
+}
+
+.max-h-20 {
+  max-height: 5rem;
+}
+
+.max-w-14 {
+  max-width: 3.5rem;
+}
+
+.max-h-14 {
+  max-height: 3.5rem;
+}
+
+.max-w-10 {
+  max-width: 2.5rem;
+}
+
+.max-h-10 {
+  max-height: 2.5rem;
+}
+
+.max-w-7 {
+  max-width: 1.75rem;
+}
+
+.max-h-7 {
+  max-height: 1.75rem;
+}
+
+.max-h-52 {
+  max-height: 13rem;
+}
+
+.max-text-xl {
+  font-size: 1.25rem !important;
+}
