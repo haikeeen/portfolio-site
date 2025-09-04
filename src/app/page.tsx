@@ -46,13 +46,13 @@ export default function Home() {
                   <div className="ml-6 text-gray-300">
                     <div className="text-gray-500">{'{'}</div>
                     <div className="ml-4">
-                      <span className="text-yellow-300">"frontend"</span>: <span className="text-green-300">["React", "Next.js", "TypeScript"]</span>,
+                      <span className="text-yellow-300">&quot;frontend&quot;</span>: <span className="text-green-300">[&quot;React&quot;, &quot;Next.js&quot;, &quot;TypeScript&quot;]</span>,
                     </div>
                     <div className="ml-4">
-                      <span className="text-yellow-300">"backend"</span>: <span className="text-green-300">["Node.js", "Python", "PostgreSQL"]</span>,
+                      <span className="text-yellow-300">&quot;backend&quot;</span>: <span className="text-green-300">[&quot;Node.js&quot;, &quot;Python&quot;, &quot;PostgreSQL&quot;]</span>,
                     </div>
                     <div className="ml-4">
-                      <span className="text-yellow-300">"tools"</span>: <span className="text-green-300">["Docker", "Git", "AWS"]</span>
+                      <span className="text-yellow-300">&quot;tools&quot;</span>: <span className="text-green-300">[&quot;Docker&quot;, &quot;Git&quot;, &quot;AWS&quot;]</span>
                     </div>
                     <div className="text-gray-500">{'}'}</div>
                   </div>
@@ -63,7 +63,7 @@ export default function Home() {
                     <span className="text-white ml-2">echo $MISSION</span>
                   </div>
                   <div className="text-gray-300 ml-6">
-                    "革新的なウェブ体験を創造し、コードを通じてアイデアを現実に変える"
+                    &quot;革新的なウェブ体験を創造し、コードを通じてアイデアを現実に変える&quot;
                   </div>
 
                   <div className="flex items-center mt-4">
@@ -117,7 +117,7 @@ export default function Home() {
               <span className="text-white font-mono">npm list --depth=0</span>
             </div>
             <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-6 font-mono">
-              <span className="text-green-400">//</span> Tech Stack
+              <span className="text-green-400">{'//'}</span> Tech Stack
             </h2>
             <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
               モダンな開発環境とベストプラクティスで構築
@@ -137,18 +137,18 @@ export default function Home() {
               </div>
               <div className="p-6 font-mono text-sm">
                 <div className="space-y-1">
-                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">React</span> <span className="text-blue-400">from</span> <span className="text-green-300">'react'</span></div>
-                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">Next</span> <span className="text-blue-400">from</span> <span className="text-green-300">'next/app'</span></div>
-                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">TypeScript</span> <span className="text-blue-400">from</span> <span className="text-green-300">'typescript'</span></div>
+                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">React</span> <span className="text-blue-400">from</span> <span className="text-green-300">&apos;react&apos;</span></div>
+                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">Next</span> <span className="text-blue-400">from</span> <span className="text-green-300">&apos;next/app&apos;</span></div>
+                  <div><span className="text-blue-400">import</span> <span className="text-yellow-300">TypeScript</span> <span className="text-blue-400">from</span> <span className="text-green-300">&apos;typescript&apos;</span></div>
                   <div className="mt-4">
-                    <span className="text-purple-400">const</span> <span className="text-yellow-300">ModernTech</span> = <span className="text-gray-300">() => {</span>
+                    <span className="text-purple-400">const</span> <span className="text-yellow-300">ModernTech</span> = <span className="text-gray-300">() =&gt; {'{'}</span>
                   </div>
                   <div className="ml-4">
                     <span className="text-blue-400">return</span> <span className="text-gray-300">(</span>
                   </div>
                   <div className="ml-8 text-green-300">&lt;Performance /&gt;</div>
                   <div className="ml-4 text-gray-300">)</div>
-                  <div className="text-gray-300">}</div>
+                  <div className="text-gray-300">{'}'}</div>
                 </div>
               </div>
             </div>
@@ -165,9 +165,9 @@ export default function Home() {
               </div>
               <div className="p-6 font-mono text-sm">
                 <div className="space-y-1">
-                  <div><span className="text-purple-400">@media</span> <span className="text-yellow-300">(max-width: 768px)</span> <span className="text-gray-300">{</span></div>
+                  <div><span className="text-purple-400">@media</span> <span className="text-yellow-300">(max-width: 768px)</span> <span className="text-gray-300">{'{'}</span></div>
                   <div className="ml-4">
-                    <span className="text-blue-400">.container</span> <span className="text-gray-300">{</span>
+                    <span className="text-blue-400">.container</span> <span className="text-gray-300">{'{'}</span>
                   </div>
                   <div className="ml-8">
                     <span className="text-green-300">padding</span>: <span className="text-yellow-300">1rem</span>;
@@ -175,9 +175,9 @@ export default function Home() {
                   <div className="ml-8">
                     <span className="text-green-300">font-size</span>: <span className="text-yellow-300">clamp(1rem, 4vw, 2rem)</span>;
                   </div>
-                  <div className="ml-4 text-gray-300">}</div>
-                  <div className="text-gray-300">}</div>
-                  <div className="mt-2 text-gray-500">/* 📱→🖥️ Perfect on every device */</div>
+                  <div className="ml-4 text-gray-300">{'}'}</div>
+                  <div className="text-gray-300">{'}'}</div>
+                  <div className="mt-2 text-gray-500">{/* 📱→🖥️ Perfect on every device */}</div>
                 </div>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function Home() {
               </div>
               <div className="p-6 font-mono text-sm">
                 <div className="space-y-1">
-                  <div><span className="text-blue-400">const</span> <span className="text-yellow-300">optimize</span> = <span className="text-purple-400">async</span> <span className="text-gray-300">() => {</span></div>
+                  <div><span className="text-blue-400">const</span> <span className="text-yellow-300">optimize</span> = <span className="text-purple-400">async</span> <span className="text-gray-300">() =&gt; {'{'}</span></div>
                   <div className="ml-4">
                     <span className="text-blue-400">await</span> <span className="text-yellow-300">lazyLoad</span><span className="text-gray-300">()</span>
                   </div>
@@ -205,9 +205,9 @@ export default function Home() {
                     <span className="text-blue-400">await</span> <span className="text-yellow-300">preload</span><span className="text-gray-300">()</span>
                   </div>
                   <div className="ml-4">
-                    <span className="text-blue-400">return</span> <span className="text-green-300">'⚡ Lightning Fast'</span>
+                    <span className="text-blue-400">return</span> <span className="text-green-300">&apos;⚡ Lightning Fast&apos;</span>
                   </div>
-                  <div className="text-gray-300">}</div>
+                  <div className="text-gray-300">{'}'}</div>
                 </div>
               </div>
             </div>
