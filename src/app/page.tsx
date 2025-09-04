@@ -5,173 +5,293 @@ import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     setMounted(true)
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+    
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
   const projects = [
     {
       id: 1,
       title: "E-Commerce Platform",
-      description: "フルスタックECサイトの開発。Next.js + TypeScript + Prisma を使用。",
+      description: "革新的なショッピング体験を提供するフルスタックECサイト。リアルタイム在庫管理と高度な検索機能を実装。",
       image: "/api/placeholder/400/300",
-      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe"],
       github: "https://github.com/haikeeen/ecommerce-platform",
       demo: "https://ecommerce-demo.vercel.app",
-      status: "completed"
+      status: "completed",
+      gradient: "from-pink-400 via-purple-500 to-blue-500",
+      icon: "🛒"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "チーム向けプロジェクト管理ツール。リアルタイム更新とドラッグ&ドロップ対応。",
+      title: "AI Task Manager",
+      description: "AI搭載のインテリジェントなタスク管理ツール。自動カテゴライズと優先度判定機能付き。",
       image: "/api/placeholder/400/300",
-      techStack: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
-      github: "https://github.com/haikeeen/task-manager",
-      demo: "https://task-manager-demo.vercel.app",
-      status: "completed"
+      techStack: ["React", "Node.js", "OpenAI API", "MongoDB", "Socket.io"],
+      github: "https://github.com/haikeeen/ai-task-manager",
+      demo: "https://ai-task-manager-demo.vercel.app",
+      status: "completed",
+      gradient: "from-cyan-400 via-teal-500 to-blue-600",
+      icon: "🤖"
     },
     {
       id: 3,
-      title: "AI ChatBot Interface",
-      description: "OpenAI API統合のチャットボットUI。ストリーミング対応。",
+      title: "Real-time Chat App",
+      description: "暗号化されたリアルタイム通信アプリ。ビデオ通話とファイル共有機能を搭載。",
       image: "/api/placeholder/400/300",
-      techStack: ["Next.js", "OpenAI API", "Tailwind CSS", "Vercel AI SDK"],
-      github: "https://github.com/haikeeen/ai-chatbot",
-      demo: "https://ai-chatbot-demo.vercel.app",
-      status: "in-progress"
+      techStack: ["Next.js", "WebRTC", "Socket.io", "Redis", "FFmpeg"],
+      github: "https://github.com/haikeeen/realtime-chat",
+      demo: "https://realtime-chat-demo.vercel.app",
+      status: "in-progress",
+      gradient: "from-green-400 via-emerald-500 to-cyan-500",
+      icon: "💬"
+    },
+    {
+      id: 4,
+      title: "3D Portfolio Showcase",
+      description: "Three.jsを使用したインタラクティブな3Dポートフォリオ。没入型のユーザー体験を実現。",
+      image: "/api/placeholder/400/300",
+      techStack: ["Three.js", "React", "WebGL", "GSAP", "Blender"],
+      github: "https://github.com/haikeeen/3d-portfolio",
+      demo: "https://3d-portfolio-demo.vercel.app",
+      status: "in-progress",
+      gradient: "from-orange-400 via-red-500 to-pink-600",
+      icon: "🎮"
+    },
+    {
+      id: 5,
+      title: "Crypto Analytics Dashboard",
+      description: "リアルタイム暗号通貨分析ダッシュボード。高度なチャートと予測機能を提供。",
+      image: "/api/placeholder/400/300",
+      techStack: ["React", "D3.js", "WebSocket", "Python", "TensorFlow"],
+      github: "https://github.com/haikeeen/crypto-analytics",
+      demo: "https://crypto-analytics-demo.vercel.app",
+      status: "completed",
+      gradient: "from-yellow-400 via-orange-500 to-red-500",
+      icon: "📊"
+    },
+    {
+      id: 6,
+      title: "IoT Smart Home Hub",
+      description: "IoTデバイス統合管理システム。音声制御とAI学習機能付きホームオートメーション。",
+      image: "/api/placeholder/400/300",
+      techStack: ["Node.js", "IoT Core", "Machine Learning", "React Native", "AWS"],
+      github: "https://github.com/haikeeen/smart-home-hub",
+      demo: "https://smart-home-demo.vercel.app",
+      status: "completed",
+      gradient: "from-purple-400 via-indigo-500 to-blue-600",
+      icon: "🏠"
     }
   ]
 
   const skills = [
-    { name: "React/Next.js", level: 90, category: "Frontend" },
-    { name: "TypeScript", level: 85, category: "Language" },
-    { name: "Node.js", level: 80, category: "Backend" },
-    { name: "Python", level: 75, category: "Language" },
-    { name: "PostgreSQL", level: 70, category: "Database" },
-    { name: "AWS", level: 65, category: "DevOps" }
+    { name: "React/Next.js", level: 95, category: "Frontend", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
+    { name: "TypeScript", level: 90, category: "Language", icon: "🔷", color: "from-blue-400 to-indigo-500" },
+    { name: "Node.js", level: 88, category: "Backend", icon: "🟢", color: "from-green-400 to-emerald-500" },
+    { name: "Python", level: 85, category: "Language", icon: "🐍", color: "from-yellow-400 to-green-500" },
+    { name: "Three.js/WebGL", level: 80, category: "3D Graphics", icon: "🎯", color: "from-purple-400 to-pink-500" },
+    { name: "AI/ML", level: 75, category: "Intelligence", icon: "🧠", color: "from-orange-400 to-red-500" },
+    { name: "PostgreSQL", level: 82, category: "Database", icon: "🐘", color: "from-indigo-400 to-purple-500" },
+    { name: "AWS/Cloud", level: 78, category: "DevOps", icon: "☁️", color: "from-teal-400 to-cyan-500" }
   ]
 
+  const particleCount = 50
+
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          {/* Profile Image */}
-          <div className="mb-8">
-            <div className="relative inline-block">
-              <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-4xl md:text-5xl lg:text-6xl">
-                  👨‍💻
-                </div>
+    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 overflow-hidden">
+      {/* Mouse Follower Effect */}
+      <div 
+        className="fixed pointer-events-none z-50 w-6 h-6 rounded-full bg-white mix-blend-difference"
+        style={{
+          left: mousePosition.x - 12,
+          top: mousePosition.y - 12,
+          transition: 'all 0.1s ease-out'
+        }}
+      />
+
+      {/* Floating Particles */}
+      {mounted && (
+        <div className="fixed inset-0 pointer-events-none z-10">
+          {[...Array(particleCount)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                backgroundColor: ['#00D4FF', '#39FF14', '#FF1B8D', '#FFD700', '#FF4500'][Math.floor(Math.random() * 5)],
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.7,
+                filter: 'blur(0.5px)'
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Hero Section - Energy Burst */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-green-400/30 to-emerald-500/30 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+
+        <div className="relative z-20 text-center max-w-6xl mx-auto">
+          {/* Floating Profile Card */}
+          <div className="mb-12 perspective-1000">
+            <div className="relative inline-block transform-gpu hover:scale-105 transition-all duration-500 animate-float">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow"></div>
+              <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                <div className="text-6xl md:text-7xl lg:text-8xl">👨‍💻</div>
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                Available
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce">
+                ✨ Available
               </div>
             </div>
           </div>
 
-          {/* Name & Title */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4">
+          {/* Neon Typography */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 drop-shadow-2xl animate-pulse">
             関口 圭祐
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-600 dark:text-gray-300 mb-6">
-            Fullstack Developer & Code Architect
-          </h2>
           
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-white drop-shadow-lg">
+            <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">Creative</span>{' '}
+            <span className="bg-gradient-to-r from-green-300 to-emerald-400 bg-clip-text text-transparent">Fullstack</span>{' '}
+            <span className="bg-gradient-to-r from-purple-300 to-pink-400 bg-clip-text text-transparent">Developer</span>
+          </h2>
+
+          {/* Floating Skill Tags */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {['React', 'Next.js', 'TypeScript', 'Three.js', 'AI/ML'].map((skill, index) => (
+              <div
+                key={skill}
+                className="px-6 py-3 bg-white/20 backdrop-blur-md rounded-full text-white font-semibold border border-white/30 hover:bg-white/30 transition-all duration-300 transform hover:scale-110 animate-bounce"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
+
           {/* Catchphrase */}
-          <p className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            革新的なウェブ体験を創造し、アイデアを現実のプロダクトに変える
+          <p className="text-xl md:text-2xl lg:text-3xl text-white/90 mb-16 max-w-4xl mx-auto leading-relaxed font-light">
+            🚀 革新的なウェブ体験を創造し、<br />
+            <span className="text-yellow-300 font-bold animate-pulse">コードで未来を描く</span> デジタルアーティスト
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons with Neon Effects */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
               href="#projects"
-              className="px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+              className="group relative px-10 py-5 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xl font-bold rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
             >
-              プロジェクトを見る
+              <span className="relative z-10">🎨 プロジェクトを見る</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
             </Link>
             <Link
               href="#contact"
-              className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-lg font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+              className="group px-10 py-5 border-4 border-white text-white text-xl font-bold rounded-full backdrop-blur-md hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
             >
-              お問い合わせ
+              💫 お問い合わせ
             </Link>
           </div>
 
-          {/* Stats Row */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">50+</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">3+</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base">Years</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400">100%</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base">Client Satisfaction</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">24/7</div>
-              <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base">Support</div>
-            </div>
+          {/* Animated Stats */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            {[
+              { number: '100+', label: 'Projects', icon: '🚀', color: 'from-cyan-400 to-blue-500' },
+              { number: '5+', label: 'Years', icon: '⭐', color: 'from-green-400 to-emerald-500' },
+              { number: '500+', label: 'Commits', icon: '💻', color: 'from-purple-400 to-pink-500' },
+              { number: '24/7', label: 'Available', icon: '⚡', color: 'from-orange-400 to-red-500' }
+            ].map((stat, index) => (
+              <div
+                key={stat.label}
+                className="text-center transform hover:scale-110 transition-all duration-300 animate-bounce"
+                style={{ animationDelay: `${index * 0.3}s` }}
+              >
+                <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                  {stat.icon} {stat.number}
+                </div>
+                <div className="text-white/80 font-medium">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Featured Projects
+      {/* Projects Section - Interactive Gallery */}
+      <section id="projects" className="py-24 bg-gradient-to-br from-cyan-400 via-teal-500 to-blue-600 relative">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-300 drop-shadow-2xl">
+              🎨 Featured Projects
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              実際に制作したプロジェクトをご覧ください。技術力と創造力を形にした成果物です。
+            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-light">
+              創造力と技術力が融合した、革新的なデジタルソリューション
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
+                className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:-translate-y-4 hover:rotate-1"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative">
-                  <div className="h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center">
-                    <div className="text-6xl opacity-50">🚀</div>
+                {/* Project Image/Icon */}
+                <div className={`relative h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center group-hover:animate-pulse`}>
+                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
+                    {project.icon}
                   </div>
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
+                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
                     project.status === 'completed' 
-                      ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                      : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
+                      ? 'bg-green-400 text-green-900'
+                      : 'bg-yellow-400 text-yellow-900'
                   }`}>
-                    {project.status === 'completed' ? '完成' : '開発中'}
+                    {project.status === 'completed' ? '✅ 完成' : '🚧 開発中'}
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  <p className="text-white/80 mb-4 line-clamp-3 text-sm leading-relaxed">
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 text-xs rounded-full"
+                        className="px-3 py-1 bg-white/20 text-white text-xs rounded-full border border-white/30"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 3 && (
-                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-full">
+                      <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full font-bold">
                         +{project.techStack.length - 3}
                       </span>
                     )}
@@ -180,19 +300,19 @@ export default function Home() {
                   <div className="flex gap-3">
                     <a
                       href={project.github}
-                      className="flex-1 text-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:border-gray-900 dark:hover:border-gray-300 transition-colors"
+                      className="flex-1 text-center px-4 py-3 border border-white/30 text-white rounded-xl hover:bg-white/20 transition-all duration-300 font-semibold hover:scale-105"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      GitHub
+                      📂 GitHub
                     </a>
                     <a
                       href={project.demo}
-                      className="flex-1 text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="flex-1 text-center px-4 py-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white rounded-xl hover:shadow-lg transition-all duration-300 font-semibold hover:scale-105"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Live Demo
+                      🚀 Demo
                     </a>
                   </div>
                 </div>
@@ -202,42 +322,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Technical Skills
+      {/* Skills Section - Neon Dashboard */}
+      <section className="py-24 bg-gradient-to-br from-green-400 via-purple-500 to-blue-600 relative">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-purple-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 drop-shadow-2xl">
+              ⚡ Technical Skills
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              現在習得している技術スタックと習熟度。継続的な学習で常にアップデートしています。
+            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-light">
+              最新技術をマスターし続ける、デジタルクラフトマンのスキルセット
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {skills.map((skill) => (
+            {skills.map((skill, index) => (
               <div
                 key={skill.name}
-                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md"
+                className="group bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-500 transform hover:scale-105"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex justify-between items-center mb-3">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {skill.name}
-                    </h3>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {skill.category}
-                    </span>
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                      {skill.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 transition-colors">
+                        {skill.name}
+                      </h3>
+                      <span className="text-sm text-white/70 font-medium">
+                        {skill.category}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                  <div className={`text-2xl font-black bg-gradient-to-r ${skill.color} bg-clip-text text-transparent`}>
                     {skill.level}%
-                  </span>
+                  </div>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                
+                <div className="w-full bg-white/20 rounded-full h-4 overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000 ease-out"
+                    className={`h-4 bg-gradient-to-r ${skill.color} rounded-full transition-all duration-2000 ease-out shadow-lg`}
                     style={{
-                      width: mounted ? `${skill.level}%` : '0%'
+                      width: mounted ? `${skill.level}%` : '0%',
+                      filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'
                     }}
                   ></div>
                 </div>
@@ -247,39 +380,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-8">
-            お問い合わせ
+      {/* Contact Section - Fire Gradient */}
+      <section id="contact" className="py-24 bg-gradient-to-br from-red-400 via-orange-500 to-yellow-400 relative">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-white/10 to-yellow-300/20 rounded-full filter blur-3xl animate-pulse"></div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-300 drop-shadow-2xl">
+            💫 Let&apos;s Connect
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-            プロジェクトのご相談、お仕事のご依頼など、お気軽にご連絡ください。24時間以内にご返信いたします。
+          <p className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto font-light">
+            素晴らしいプロジェクトを一緒に創造しましょう！<br />
+            新しいアイデアをお聞かせください 🚀
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16">
             <a
               href="mailto:keisuke.sekiguchi2@gmail.com"
-              className="px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+              className="group px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xl font-bold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
             >
-              メールを送る
+              <span className="group-hover:animate-bounce inline-block">📧</span> メールを送る
             </a>
             <a
               href="https://github.com/haikeeen"
-              className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-lg font-semibold rounded-lg hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+              className="group px-12 py-6 border-4 border-white text-white text-xl font-bold rounded-full backdrop-blur-md hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              <span className="group-hover:animate-spin inline-block">⭐</span> GitHub
             </a>
           </div>
 
-          <div className="text-center text-gray-500 dark:text-gray-400">
-            <p>📍 Tokyo, Japan</p>
-            <p>💼 Available for freelance projects</p>
+          <div className="text-center text-white/80 space-y-2">
+            <p className="text-lg">📍 Tokyo, Japan</p>
+            <p className="text-lg">💼 Available for exciting projects</p>
+            <p className="text-lg">🌟 Response within 24 hours</p>
           </div>
         </div>
       </section>
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </div>
   )
 }
