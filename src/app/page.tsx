@@ -186,7 +186,7 @@ export default function Home() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">&gt;</span>
             </h2>
             <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
-              <span className="text-cyan-400 font-mono">//</span> モダンな開発環境とベストプラクティスで構築
+              <span className="text-cyan-400 font-mono">{'//'}</span> モダンな開発環境とベストプラクティスで構築
             </p>
           </div>
 
@@ -301,7 +301,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center mt-2">
                     <span className="text-gray-500 w-8 text-right mr-4">8</span>
-                    <div className="text-gray-500">/* 📱→🖥️ Perfect on every device */</div>
+                    <div className="text-gray-500">{/* 📱→🖥️ Perfect on every device */}</div>
                   </div>
                 </div>
                 <div className="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
@@ -335,19 +335,19 @@ export default function Home() {
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-500 w-8 text-right mr-4">2</span>
-                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">lazyLoad</span><span className="text-gray-300">(</span><span className="text-green-300">'components'</span><span className="text-gray-300">)</span></div>
+                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">lazyLoad</span><span className="text-gray-300">(</span><span className="text-green-300">&apos;components&apos;</span><span className="text-gray-300">)</span></div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-500 w-8 text-right mr-4">3</span>
-                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">codeSplitting</span><span className="text-gray-300">(</span><span className="text-green-300">'routes'</span><span className="text-gray-300">)</span></div>
+                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">codeSplitting</span><span className="text-gray-300">(</span><span className="text-green-300">&apos;routes&apos;</span><span className="text-gray-300">)</span></div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-500 w-8 text-right mr-4">4</span>
-                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">preloadCritical</span><span className="text-gray-300">(</span><span className="text-green-300">'assets'</span><span className="text-gray-300">)</span></div>
+                    <div className="ml-4"><span className="text-purple-400">await</span> <span className="text-yellow-300">preloadCritical</span><span className="text-gray-300">(</span><span className="text-green-300">&apos;assets&apos;</span><span className="text-gray-300">)</span></div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-500 w-8 text-right mr-4">5</span>
-                    <div className="ml-4"><span className="text-blue-400">return</span> <span className="text-green-300">'⚡ Lighthouse Score: 100'</span></div>
+                    <div className="ml-4"><span className="text-blue-400">return</span> <span className="text-green-300">&apos;⚡ Lighthouse Score: 100&apos;</span></div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-500 w-8 text-right mr-4">6</span>

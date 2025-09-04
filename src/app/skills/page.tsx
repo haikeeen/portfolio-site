@@ -53,7 +53,7 @@ export default function SkillsPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">&gt;</span>
           </h1>
           <p className="text-xl text-gray-300 font-mono">
-            <span className="text-cyan-400">//</span> テクニカルスキルと習熟度
+            <span className="text-cyan-400">{'//'}</span> テクニカルスキルと習熟度
           </p>
         </div>
 
