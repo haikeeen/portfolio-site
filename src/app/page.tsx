@@ -4,7 +4,7 @@ export default function Home() {
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
         <h1 className="text-4xl font-bold mb-8">ポートフォリオサイト</h1>
         <p className="mb-4">
-          フリーランスエンジニアとしての実績とプロジェクトを紹介します。
+          実績とプロジェクトを紹介します。
         </p>
       </div>
     </main>
