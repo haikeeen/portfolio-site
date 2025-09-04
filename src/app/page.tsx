@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     setMounted(true)
@@ -14,8 +15,59 @@ export default function Home() {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
     
+    // Smooth scroll to section
+    const smoothScrollTo = (elementId: string) => {
+      const element = document.getElementById(elementId)
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+
+    // Add smooth scroll to existing anchor links
+    const handleAnchorClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement
+      if (target.hash) {
+        e.preventDefault()
+        const sectionId = target.hash.substring(1)
+        smoothScrollTo(sectionId)
+      }
+    }
+
+    // Intersection Observer for active section detection
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }, observerOptions)
+
+    // Observe sections when component mounts
+    setTimeout(() => {
+      const sections = ['home', 'projects', 'skills', 'contact']
+      sections.forEach(id => {
+        const element = document.getElementById(id)
+        if (element) observer.observe(element)
+      })
+    }, 100)
+    
     window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    document.addEventListener('click', handleAnchorClick)
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('click', handleAnchorClick)
+      observer.disconnect()
+    }
   }, [])
 
   const projects = [
@@ -104,10 +156,61 @@ export default function Home() {
     { name: "AWS/Cloud", level: 78, category: "DevOps", icon: "☁️", color: "from-teal-400 to-cyan-500" }
   ]
 
-  const particleCount = 50
+  // Optimize particle count based on device capabilities
+  const getParticleCount = () => {
+    if (typeof window === 'undefined') return 30
+    const isMobile = window.innerWidth < 768
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (isReducedMotion) return 10
+    if (isMobile) return 20
+    return 40 // Reduced from 50 for better performance
+  }
+  
+  const particleCount = mounted ? getParticleCount() : 30
+
+  const navigationItems = [
+    { id: 'home', label: 'Home', icon: '🏠' },
+    { id: 'projects', label: 'Projects', icon: '🎨' },
+    { id: 'skills', label: 'Skills', icon: '⚡' },
+    { id: 'contact', label: 'Contact', icon: '💫' }
+  ]
+
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 overflow-hidden">
+      {/* Floating Navigation */}
+      <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-40 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-4 shadow-2xl">
+        <div className="flex items-center gap-8">
+          {navigationItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              className={`group flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-300 ${
+                activeSection === item.id
+                  ? 'bg-white/30 text-white scale-110'
+                  : 'text-white/80 hover:text-white hover:bg-white/20 hover:scale-105'
+              }`}
+            >
+              <span className="text-lg group-hover:animate-bounce">
+                {item.icon}
+              </span>
+              <span className="font-medium text-sm hidden md:block">
+                {item.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </nav>
       {/* Mouse Follower Effect */}
       <div 
         className="fixed pointer-events-none z-50 w-6 h-6 rounded-full bg-white mix-blend-difference"
@@ -132,7 +235,8 @@ export default function Home() {
                 animationDelay: `${Math.random() * 5}s`,
                 animationDuration: `${2 + Math.random() * 3}s`,
                 opacity: 0.7,
-                filter: 'blur(0.5px)'
+                filter: 'blur(0.5px)',
+                willChange: 'opacity, transform'
               }}
             />
           ))}
@@ -140,7 +244,7 @@ export default function Home() {
       )}
 
       {/* Hero Section - Energy Burst */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
+      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
         {/* Animated Background Orbs */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 rounded-full filter blur-3xl animate-pulse"></div>
@@ -194,19 +298,19 @@ export default function Home() {
 
           {/* CTA Buttons with Neon Effects */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link
-              href="#projects"
+            <button
+              onClick={() => handleNavClick('projects')}
               className="group relative px-10 py-5 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xl font-bold rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
             >
               <span className="relative z-10">🎨 プロジェクトを見る</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-            </Link>
-            <Link
-              href="#contact"
+            </button>
+            <button
+              onClick={() => handleNavClick('contact')}
               className="group px-10 py-5 border-4 border-white text-white text-xl font-bold rounded-full backdrop-blur-md hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:-translate-y-2"
             >
               💫 お問い合わせ
-            </Link>
+            </button>
           </div>
 
           {/* Animated Stats */}
@@ -323,7 +427,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section - Neon Dashboard */}
-      <section className="py-24 bg-gradient-to-br from-green-400 via-purple-500 to-blue-600 relative">
+      <section id="skills" className="py-24 bg-gradient-to-br from-green-400 via-purple-500 to-blue-600 relative">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full filter blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-purple-500/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
