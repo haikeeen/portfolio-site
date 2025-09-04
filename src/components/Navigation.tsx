@@ -17,13 +17,15 @@ export default function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-lg">
+    <nav className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800/50 shadow-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                Portfolio
+              <h1 className="text-xl font-bold font-mono">
+                <span className="text-green-400">&lt;</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Portfolio</span>
+                <span className="text-green-400">/&gt;</span>
               </h1>
             </Link>
           </div>
@@ -34,10 +36,10 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-200 ${
+                className={`inline-flex items-center px-3 py-2 text-sm font-medium font-mono transition-all duration-300 rounded-lg ${
                   pathname === item.href
-                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    ? 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/30 shadow-lg'
+                    : 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/5 border border-transparent hover:border-cyan-400/20'
                 }`}
               >
                 {item.name}
@@ -49,7 +51,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 border border-gray-700/50 hover:border-cyan-400/30 transition-all duration-300"
               aria-expanded={isOpen}
             >
               <span className="sr-only">メニューを開く</span>
@@ -74,10 +76,10 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              className={`block px-3 py-2 rounded-md text-base font-medium font-mono transition-all duration-300 ${
                 pathname === item.href
-                  ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-gray-800'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/30'
+                  : 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/5 border border-transparent hover:border-cyan-400/20'
               }`}
               onClick={() => setIsOpen(false)}
             >
